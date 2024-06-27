@@ -1,18 +1,24 @@
+import java.util.Objects;
+
 public class Mueble {
-    private String nombre; //Seria el nombre
-    private int stock; // Cantidad max de mismo elemento
-    private int precio; //Precio X unidad
-    private String material; //El matarial del producto
+    private String tipo;
+    private String material;
+    private int stock;
+    private int precio;
 
-
-    public Mueble(String tipo, int stock, int precio, String material) {
-        this.nombre = tipo;
+    public Mueble(String tipo, String material, int stock, int precio) {
+        this.tipo = tipo;
+        this.material = material;
         this.stock = stock;
         this.precio = precio;
-        this.material = material;
     }
-    public String getNombre() {
-        return nombre;
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public String getMaterial() {
+        return material;
     }
 
     public int getStock() {
@@ -31,28 +37,23 @@ public class Mueble {
         this.precio = precio;
     }
 
-    public boolean reducirStock(int cantidad) {
+    public void reducirStock(int cantidad) throws Exception {
         if (cantidad > stock) {
-            return false;
+            throw new Exception("Stock insuficiente para " + tipo);
         }
         stock -= cantidad;
-        return true;
     }
 
-    public String getMaterial() {
-        return material;
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Mueble mueble = (Mueble) obj;
+        return stock == mueble.stock && precio == mueble.precio && tipo.equals(mueble.tipo) && material.equals(mueble.material);
     }
 
-    public void setMaterial(String material) {
-        this.material = material;
-    }
-
-    public String toString() {
-        return "Mueble{" +
-                "nombre='" + nombre + '\'' +
-                ", stock=" + stock +
-                ", precio=" + precio +
-                ", material=" + material +
-                '}';
+    @Override
+    public int hashCode() {
+        return Objects.hash(tipo, material, stock, precio);
     }
 }

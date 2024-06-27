@@ -5,8 +5,8 @@ public class Mueble {
     private String material; //El matarial del producto
 
 
-    public Mueble(String tipo, int stock, int precio, String material) {
-        this.nombre = tipo;
+    public Mueble(String nombre, int stock, int precio, String material) {
+        this.nombre = nombre;
         this.stock = stock;
         this.precio = precio;
         this.material = material;

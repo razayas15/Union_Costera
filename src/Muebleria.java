@@ -8,11 +8,15 @@ public class Muebleria {
     }
 
     public void agregarMueble(Mueble mueble){
+        //
         inventario.add(mueble);
     }
 
     public void mostrarInventario() {
         System.out.println("Inventario de la mueblería:");
+        if(inventario.size() == 0){
+            return;
+        }
         for (Mueble mueble : inventario) {
             System.out.println("Mueble: " + mueble.getNombre() + ", Stock: " + mueble.getStock() + ", Precio: " + mueble.getPrecio());
         }

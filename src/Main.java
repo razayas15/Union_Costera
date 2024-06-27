@@ -4,9 +4,11 @@ public class Main {
         FabricaDeMueble f1 = new FabricaDeMueble();
         Muebleria Union_costera = new Muebleria();
 
-        Mueble mueble = f1.cargarManualmente();
-        System.out.println(mueble);
+        Union_costera.agregarMueble(f1.cargarManualmente());
 
+
+        System.out.println();
+        Union_costera.mostrarInventario();
 
         System.out.println("Fin del programa.");
 

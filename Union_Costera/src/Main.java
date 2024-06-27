@@ -20,10 +20,7 @@ public class Main {
             muebleria.agregarMueble(ropero);
 
             // Mostrar inventario de la mueblería
-            List<Mueble> inventario = muebleria.getInventario();
-            for (Mueble mueble : inventario) {
-                System.out.println("Mueble: " + mueble.getTipo() + ", Material: " + mueble.getMaterial() + ", Stock: " + mueble.getStock() + ", Precio: " + mueble.getPrecio());
-            }
+            muebleria.imprimirInventario();
 
             // Vender muebles
             Mueble muebleVendido = muebleria.venderMueble("Silla", 2);
@@ -39,33 +36,25 @@ public class Main {
             // Filtrar muebles por material
             List<Mueble> mueblesDeMadera = muebleria.filtrarPorMaterial("Madera");
             System.out.println("Muebles de madera:");
-            for (Mueble mueble : mueblesDeMadera) {
-                System.out.println("Mueble: " + mueble.getTipo() + ", Material: " + mueble.getMaterial() + ", Stock: " + mueble.getStock() + ", Precio: " + mueble.getPrecio());
-            }
+            muebleria.imprimirMuebles(mueblesDeMadera);
 
             // Filtrar muebles por stock menor a una cantidad
             List<Mueble> mueblesConStockMenorA10 = muebleria.filtrarPorStockMenorA(10);
             System.out.println("Muebles con stock menor a 10:");
-            for (Mueble mueble : mueblesConStockMenorA10) {
-                System.out.println("Mueble: " + mueble.getTipo() + ", Material: " + mueble.getMaterial() + ", Stock: " + mueble.getStock() + ", Precio: " + mueble.getPrecio());
-            }
+            muebleria.imprimirMuebles(mueblesConStockMenorA10);
 
             int cantidad = 10;
 
             // Filtrar muebles por stock mayor o igual a una cantidad específica
             List<Mueble> mueblesConStockMayorOIgualA = muebleria.filtrarPorStockMayorOIgualA(cantidad);
             System.out.println("Muebles con stock mayor o igual a " + cantidad + ":");
-            for (Mueble mueble : mueblesConStockMayorOIgualA) {
-                System.out.println("Mueble: " + mueble.getTipo() + ", Material: " + mueble.getMaterial() + ", Stock: " + mueble.getStock() + ", Precio: " + mueble.getPrecio());
-            }
+            muebleria.imprimirMuebles(mueblesConStockMayorOIgualA);
 
             // Filtrar muebles por tipo
             String tipo = "Silla";
             List<Mueble> mueblesPorTipo = muebleria.filtrarPorTipo(tipo);
             System.out.println("Muebles del tipo " + tipo + ":");
-            for (Mueble mueble : mueblesPorTipo) {
-                System.out.println("Mueble: " + mueble.getTipo() + ", Material: " + mueble.getMaterial() + ", Stock: " + mueble.getStock() + ", Precio: " + mueble.getPrecio());
-            }
+            muebleria.imprimirMuebles(mueblesPorTipo);
 
         } catch (Exception e) {
             System.out.println(e.getMessage());

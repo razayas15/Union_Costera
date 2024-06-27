@@ -1,5 +1,8 @@
-import java.util.List;
+
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class Muebleria {
     private List<Mueble> inventario;
 
@@ -7,31 +10,46 @@ public class Muebleria {
         this.inventario = new ArrayList<>();
     }
 
-    public void agregarMueble(Mueble mueble){
+    public void agregarMueble(Mueble mueble) {
         inventario.add(mueble);
     }
 
-    public void mostrarInventario() {
-        System.out.println("Inventario de la mueblería:");
-        for (Mueble mueble : inventario) {
-            System.out.println("Mueble: " + mueble.getNombre() + ", Stock: " + mueble.getStock() + ", Precio: " + mueble.getPrecio());
-        }
+    public List<Mueble> getInventario() {
+        return new ArrayList<>(inventario);
     }
 
-    public boolean venderMueble(String tipo, int cantidad) {
+    public Mueble venderMueble(String tipo, int cantidad) throws Exception {
         for (Mueble mueble : inventario) {
-            if (mueble.getNombre().equals(tipo)) {
-                if (mueble.reducirStock(cantidad)) {
-                    System.out.println("Venta exitosa: " + cantidad + " " + tipo + "(s) vendidos.");
-                    return true;
-                } else {
-                    System.out.println("Stock insuficiente para " + tipo + ".");
-                    return false;
-                }
+            if (mueble.getTipo().equals(tipo)) {
+                mueble.reducirStock(cantidad);
+                return mueble;
             }
         }
-        System.out.println("Mueble " + tipo + " no encontrado.");
-        return false;
+        throw new Exception("Mueble " + tipo + " no encontrado.");
     }
 
+    public List<Mueble> filtrarPorMaterial(String material) {
+        return inventario.stream()
+                .filter(mueble -> mueble.getMaterial().equals(material))
+                .collect(Collectors.toList());
+    }
+
+    public List<Mueble> filtrarPorStockMenorA(int cantidad) {
+        return inventario.stream()
+                .filter(mueble -> mueble.getStock() < cantidad)
+                .collect(Collectors.toList());
+    }
+
+
+    public List<Mueble> filtrarPorStockMayorOIgualA(int cantidad) {
+        return inventario.stream()
+                .filter(mueble -> mueble.getStock() >= cantidad)
+                .collect(Collectors.toList());
+    }
+
+    public List<Mueble> filtrarPorTipo(String tipo) {
+        return inventario.stream()
+                .filter(mueble -> mueble.getTipo().equals(tipo))
+                .collect(Collectors.toList());
+    }
 }

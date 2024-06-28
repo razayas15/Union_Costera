@@ -52,8 +52,5 @@ public class Mueble {
         return stock == mueble.stock && precio == mueble.precio && tipo.equals(mueble.tipo) && material.equals(mueble.material);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(tipo, material, stock, precio);
-    }
+
 }

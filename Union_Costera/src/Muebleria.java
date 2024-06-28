@@ -52,4 +52,17 @@ public class Muebleria {
                 .filter(mueble -> mueble.getTipo().equals(tipo))
                 .collect(Collectors.toList());
     }
+
+    public void imprimirInventario() {
+        System.out.println("Inventario:");
+        for (Mueble mueble : inventario) {
+            System.out.println("Mueble: " + mueble.getTipo() + ", Material: " + mueble.getMaterial() + ", Stock: " + mueble.getStock() + ", Precio: " + mueble.getPrecio());
+        }
+    }
+
+    public void imprimirMuebles(List<Mueble> muebles) {
+        for (Mueble mueble : muebles) {
+            System.out.println("Mueble: " + mueble.getTipo() + ", Material: " + mueble.getMaterial() + ", Stock: " + mueble.getStock() + ", Precio: " + mueble.getPrecio());
+        }
+    }
 }
